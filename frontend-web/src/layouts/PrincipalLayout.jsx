@@ -1,14 +1,18 @@
 import { Outlet } from 'react-router-dom'
+import Sidebar from './sidebar/Sidebar'
+import Header from './header/Header';
 
-const AuthLayout = () => {
-    document.body.style = 'background: #BDE1DD';
+const PrincipalLayout = () => {
+    document.body.style = 'background: #FFFFFF';
 
     return (
         <>
+            <Header />
+            <Sidebar />
             <div>PrincipalLayout</div>
             <Outlet />
         </>
     )
 }
 
-export default AuthLayout
+export default PrincipalLayout
