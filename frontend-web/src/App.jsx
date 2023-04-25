@@ -11,6 +11,9 @@ import OlvidePassword from "./pages/OlvidePassword"
 import Inicio from "./pages/Inicio"
 import Perfil from "./pages/Perfil"
 
+import Materiales from "./pages/Materiales"
+
+import './assets/scss/icons.scss';
 
 function App() {
   return (
@@ -29,6 +32,7 @@ function App() {
         <Route path="siges-rec" element={<PrincipalLayout />}>
           <Route index element={<Inicio />} />
           <Route path="perfil" element={<Perfil />} />
+          <Route path="materiales" element={<Materiales/>} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -7,8 +7,8 @@ const PrincipalLayout = () => {
 
     return (
         <>
-            <Header />
-            <Sidebar />
+            {/* <Header />
+            <Sidebar /> */}
             <div>PrincipalLayout</div>
             <Outlet />
         </>
