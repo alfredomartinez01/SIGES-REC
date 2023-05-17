@@ -1,14 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+//import 'react-native-gesture-handler';
+import React, {useEffect} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaView, StyleSheet, StatusBar , View } from 'react-native';
+import { TabNavigator } from './src/navigator/TabNavigator.js';
+import * as Font from 'expo-font';
+import { HeaderSIGESRECT } from './src/layouts/HeaderSIGESRECT';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hola mundo</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+async function loadFonts() {
+  await Font.loadAsync({
+    'Acme-Regular': require('./assets/fonts/Acme-Regular.ttf'),
+  });
 }
+
+export default function App()  {
+  useEffect(() => {
+    loadFonts();
+  }, []);
+  
+  return (
+      <SafeAreaView style={{ flex: 1, marginTop:StatusBar.currentHeight }}>
+        <HeaderSIGESRECT />
+        <NavigationContainer >
+          
+          {/* <StackNavigator /> */}
+          {/* <MenuLateralBasico /> */}
+          <TabNavigator />
+          {/* <Tabs /> */}
+        </NavigationContainer>
+      </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
