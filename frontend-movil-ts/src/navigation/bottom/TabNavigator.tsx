@@ -1,16 +1,19 @@
 import React from 'react'
+import { View, Animated, TouchableOpacity, Image, Dimensions, StyleSheet } from 'react-native';
+
+//Screens...
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { ChatScreen } from '../screens/ChatScreen';
-import { NotificationsScreen } from '../screens/NotificationsScreen';
-import { HomeScreen } from '../screens/HomeScreen';
-import { View, Animated, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { MaterialCatalogScreen } from '../../screens/MaterialCatalogScreen';
+import { MainScreen } from '../../screens/MainScreen';
+import { CalendarScreen } from '../../screens/CalendarScreen';
+import { ProfileScreen } from '../../screens/ProfileScreen';
 
-// Plus...
-import plus from '../assets/plus.png';
-
-// Font Awesome Icons...
+//Icons...
 import { FontAwesome5 } from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import { useRef } from 'react';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +30,8 @@ export const TabNavigator = () => {
         tabBarStyle: {
           backgroundColor: 'white',
           position: 'absolute',
-          bottom: 40,
+          bottom: 35,
+          height: 60,
           marginHorizontal: 20,
           borderRadius: 10,
           paddingHorizontal: 10,
@@ -41,8 +45,8 @@ export const TabNavigator = () => {
         },
       }}>
 
-      {/* Home Screen */}
-      <Tab.Screen name={"Home"} component={HomeScreen} options={{
+      {/* Main Screen */}
+      <Tab.Screen name={"Home"} component={MainScreen} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{
             position: 'absolute',
@@ -50,8 +54,8 @@ export const TabNavigator = () => {
           }}>
             <FontAwesome5
               name="home"
-              size={25}
-              color={focused ? '#0958d9' : 'gray'}
+              size={33}
+              color={focused ? '#2E86C1' : 'gray'}
             ></FontAwesome5>
           </View>
         )
@@ -64,18 +68,18 @@ export const TabNavigator = () => {
         }
       })} />
 
-      {/* Search Screen */}
-      <Tab.Screen name={"Search"} component={ChatScreen} options={{
+      {/* Material Catalog Screen */}
+      <Tab.Screen name={"MaterialCatalogScreen"} component={MaterialCatalogScreen} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{
             position: 'absolute',
             top: 10
           }}>
-            <FontAwesome5
-              name="search"
-              size={25}
-              color={focused ? '#0958d9' : 'gray'}
-            ></FontAwesome5>
+            <Icon
+             name='albums'
+              size={35}
+              color={focused ? '#2E86C1' : 'gray'}
+            />
           </View>
         )
       }} listeners={({ navigation, route }) => ({
@@ -88,19 +92,11 @@ export const TabNavigator = () => {
       })} />
 
       {/* Plus Screen */}
-      <Tab.Screen name={"ActionBottom"} component={ChatScreen} options={{
+      <Tab.Screen name={"ActionBottom"} component={MaterialCatalogScreen} options={{
         tabBarIcon: ({ focused }) => (
           <TouchableOpacity>
-            <View style={{
-              width: 55,
-              height: 55,
-              backgroundColor: '#0958d9',
-              borderRadius: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: Platform.OS == "android" ? 30 : 30
-            }}>
-              <Image source={plus} style={{
+            <View style={styles.floatingButton}>
+              <Image source={require('../../../assets/images/plus.png')} style={{
                 width: 22,
                 height: 22,
                 tintColor: 'white',
@@ -110,17 +106,17 @@ export const TabNavigator = () => {
         )
       }} />
 
-      {/* Notifications Screen */}
-      <Tab.Screen name={"NotificationsScreen"} component={NotificationsScreen} options={{
+      {/* Calendar Screen */}
+      <Tab.Screen name={"CalendarScreen"} component={CalendarScreen} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{
             position: 'absolute',
             top: 10
           }}>
             <FontAwesome5
-              name="bell"
-              size={25}
-              color={focused ? '#0958d9' : 'gray'}
+              name="calendar-day"
+              size={30}
+              color={focused ? '#2E86C1' : 'gray'}
             ></FontAwesome5>
           </View>
         )
@@ -134,7 +130,7 @@ export const TabNavigator = () => {
       })} />
 
       {/* Profile Screen */}
-      <Tab.Screen name={"Profile "} component={ChatScreen} options={{
+      <Tab.Screen name={"ProfileScreen"} component={ProfileScreen} options={{
         tabBarIcon: ({ focused }) => (
           <View style={{
             position: 'absolute',
@@ -142,8 +138,8 @@ export const TabNavigator = () => {
           }}>
             <FontAwesome5
               name="user-alt"
-              size={25}
-              color={focused ? '#0958d9' : 'gray'}
+              size={30}
+              color={focused ? '#2E86C1' : 'gray'}
             ></FontAwesome5>
           </View>
         )
@@ -160,9 +156,9 @@ export const TabNavigator = () => {
     <Animated.View style={{
       width: getWidth() - 15,
       height: 2,
-      backgroundColor: '#0958d9',
+      backgroundColor: '#2E86C1',
       position: 'absolute',
-      bottom: 88,
+      bottom: 94,
       left: 40,
       borderRadius: 20,
       transform: [
@@ -182,3 +178,16 @@ function getWidth() {
   // Total five Tabs...
   return width / 5
 }
+
+const styles = StyleSheet.create({
+  floatingButton: {
+    alignItems: 'center',
+    width: 55,
+    height: 55,
+    backgroundColor: '#2E86C1',
+    borderRadius: 30,
+    marginBottom: 30,
+    justifyContent: 'center',
+  }
+
+})
